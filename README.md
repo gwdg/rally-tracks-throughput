@@ -2,6 +2,8 @@
 
 This repo removes some restrictions regarding maximum throughput as we care more about maxmimizing performace, not just latency regression.
 
+[See this forum post for more.](https://discuss.elastic.co/t/reasoning-behind-geonames-rally-design/333271)
+
 ---
 
 rally-tracks
