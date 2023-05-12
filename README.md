@@ -1,3 +1,9 @@
+# PATCH FOR THROUGHPUT
+
+This repo removes some restrictions regarding maximum throughput as we care more about maxmimizing performace, not just latency regression.
+
+---
+
 rally-tracks
 ------------
 
