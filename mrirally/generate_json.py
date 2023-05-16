@@ -279,7 +279,9 @@ def generate_document():
 
 	# "Tags" : "Keyword(multi=True)"
 	# should suffice
-	doc["Tags"] = random.sample(["Tag1", "Tag2", "Tag3", "Tag4", "Tag5", "Tag6", "Tag7", "Tag8", "Tag9", "Tag10"], random.randint(0, 10))
+	doc["Tags"] = "lol"
+
+	#doc["Tags"] = random.sample(["Tag1", "Tag2", "Tag3", "Tag4", "Tag5", "Tag6", "Tag7", "Tag8", "Tag9", "Tag10"], random.randint(0, 10))
 
     # After further query sketching (2023-04-25), we discussed to add the following tags:
 	# "Filename" : "Text()",

@@ -26,13 +26,13 @@
       "StudyTimeText": {
         "type": "text"
       },
-      "ProtocolName": {
-        "type": "text"
-      },
       "SystemVendor": {
         "type": "text"
       },
       "SystemModel": {
+        "type": "text"
+      },
+      "ProtocolName": {
         "type": "text"
       },
       "SystemFieldStrength": {
@@ -165,11 +165,10 @@
         "type": "keyword"
       },
       "PatientBirthday": {
-        "type": "date",
-        "format": "yyyy-MM-dd"
+        "type": "date"
       },
       "PatientWeight": {
-        "type": "float"
+        "type": "date"
       },
       "PatientSex": {
         "type": "text"
@@ -178,8 +177,7 @@
         "type": "integer"
       },
       "StudyDate": {
-        "type": "date",
-        "format": "yyyy-MM-dd"
+        "type": "date"
       },
       "Lamor_frequency": {
         "type": "float"
@@ -189,6 +187,12 @@
       },
       "Tags": {
         "type": "keyword"
+      },
+      "Filename": {
+        "type": "text"
+      },
+      "BrainAge": {
+        "type": "integer"
       }
     }
   }
