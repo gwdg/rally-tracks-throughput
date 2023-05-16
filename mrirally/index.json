@@ -165,7 +165,8 @@
         "type": "keyword"
       },
       "PatientBirthday": {
-        "type": "date"
+        "type": "date",
+        "format": "yyyy-MM-dd"
       },
       "PatientWeight": {
         "type": "date"
@@ -177,7 +178,8 @@
         "type": "integer"
       },
       "StudyDate": {
-        "type": "date"
+        "type": "date",
+        "format": "yyyy-MM-dd"
       },
       "Lamor_frequency": {
         "type": "float"
