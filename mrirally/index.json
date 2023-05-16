@@ -1,0 +1,195 @@
+{
+  "settings": {
+    "index.number_of_replicas": 0
+  },
+  "mappings": {
+    "dynamic": "strict",
+    "properties": {
+      "ismrmrdHeader": {
+        "type": "text"
+      },
+      "cflHeader": {
+        "type": "text"
+      },
+      "DataFormat": {
+        "type": "text"
+      },
+      "FrameOfReferenceUID": {
+        "type": "text"
+      },
+      "MeasurementID": {
+        "type": "text"
+      },
+      "StudyID": {
+        "type": "text"
+      },
+      "StudyTimeText": {
+        "type": "text"
+      },
+      "ProtocolName": {
+        "type": "text"
+      },
+      "SystemVendor": {
+        "type": "text"
+      },
+      "SystemModel": {
+        "type": "text"
+      },
+      "SystemFieldStrength": {
+        "type": "float"
+      },
+      "NumberReceiverChannels": {
+        "type": "integer"
+      },
+      "InstitutionName": {
+        "type": "text"
+      },
+      "InstitutionAddress": {
+        "type": "text"
+      },
+      "Trajectory": {
+        "type": "text"
+      },
+      "AcquisitionType": {
+        "type": "text"
+      },
+      "AccelerationFactor": {
+        "type": "float"
+      },
+      "TR": {
+        "type": "float"
+      },
+      "TI": {
+        "type": "float"
+      },
+      "TE": {
+        "type": "float"
+      },
+      "FlipAngle": {
+        "type": "float"
+      },
+      "SequenceType": {
+        "type": "text"
+      },
+      "EchoSpacing": {
+        "type": "float"
+      },
+      "KspaceX": {
+        "type": "integer"
+      },
+      "KspaceFOVX": {
+        "type": "float"
+      },
+      "KspaceFOVY": {
+        "type": "float"
+      },
+      "KspaceFOVZ": {
+        "type": "float"
+      },
+      "KspaceReadout": {
+        "type": "integer"
+      },
+      "KspacePhaseEnc1": {
+        "type": "integer"
+      },
+      "KspacePhaseEnc2": {
+        "type": "integer"
+      },
+      "KspaceCoils": {
+        "type": "integer"
+      },
+      "KspaceMaps": {
+        "type": "integer"
+      },
+      "KspaceTE": {
+        "type": "integer"
+      },
+      "KspaceCoeff": {
+        "type": "integer"
+      },
+      "KspaceCoeff2": {
+        "type": "integer"
+      },
+      "KspaceIter": {
+        "type": "integer"
+      },
+      "KspaceCshift": {
+        "type": "integer"
+      },
+      "KspaceTime": {
+        "type": "integer"
+      },
+      "KspaceTime2": {
+        "type": "integer"
+      },
+      "KspaceLevel": {
+        "type": "integer"
+      },
+      "KspaceSlice": {
+        "type": "integer"
+      },
+      "KspaceAvg": {
+        "type": "integer"
+      },
+      "ImageFOVX": {
+        "type": "float"
+      },
+      "ImageFOVY": {
+        "type": "float"
+      },
+      "ImageFOVZ": {
+        "type": "float"
+      },
+      "ImageMatrixX": {
+        "type": "integer"
+      },
+      "BaseResolution": {
+        "type": "integer"
+      },
+      "ImageMatrixY": {
+        "type": "integer"
+      },
+      "ImageMatrixZ": {
+        "type": "integer"
+      },
+      "SliceThickness": {
+        "type": "float"
+      },
+      "BodyPart": {
+        "type": "keyword"
+      },
+      "PatientID": {
+        "type": "keyword"
+      },
+      "PatientName": {
+        "type": "keyword"
+      },
+      "PatientBirthday": {
+        "type": "date",
+        "format": "yyyy-MM-dd"
+      },
+      "PatientWeight": {
+        "type": "float"
+      },
+      "PatientSex": {
+        "type": "text"
+      },
+      "PatientAge": {
+        "type": "integer"
+      },
+      "StudyDate": {
+        "type": "date",
+        "format": "yyyy-MM-dd"
+      },
+      "Lamor_frequency": {
+        "type": "float"
+      },
+      "TNumber": {
+        "type": "text"
+      },
+      "Tags": {
+        "type": "keyword"
+      }
+    }
+  }
+}
