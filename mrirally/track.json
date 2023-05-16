@@ -13,8 +13,8 @@
       "documents": [
         {
           "source-file": "data.json",
-          "document-count": 100000,
-          "uncompressed-bytes": 160771878
+          "document-count": 1000000,
+          "uncompressed-bytes": 1607892023
         }
       ]
     }
@@ -72,9 +72,7 @@
           }
         },
         {
-          "operation": "index",
-          "warmup-time-period": 120,
-          "clients": 8
+          "operation": "index"
         }
       ]
     }

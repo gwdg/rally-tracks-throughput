@@ -7,7 +7,7 @@ from dataclasses import dataclass
 
 import numpy as np
 
-N = 10**5
+N = 10**6
 ROUND_TO = 4
 
 ALL_STRING_VALUES = [*string.ascii_letters, *string.digits, ' ']
