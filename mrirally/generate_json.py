@@ -7,7 +7,7 @@ from dataclasses import dataclass
 
 import numpy as np
 
-N = 10**4
+N = 10**5
 ROUND_TO = 4
 
 ALL_STRING_VALUES = [*string.ascii_letters, *string.digits, ' ']
@@ -296,6 +296,8 @@ def generate_document():
 
 if __name__ == '__main__':
     with open('data.json', 'w') as f:
-        for _ in range(N):
+        for i in range(N):
+            if i % 10000 == 0:
+                print(f"Progress: {i}/{N}")
             f.write(generate_document())
             f.write("\n")
