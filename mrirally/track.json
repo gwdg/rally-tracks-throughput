@@ -33,7 +33,8 @@
         "query": {
           "match_all": {}
         }
-      }
+      },
+      "cache": false
     },
     {
       "name": "default_1k",
@@ -42,7 +43,8 @@
         "query": {
           "match_all": {}
         },
-        "size": 1000
+        "size": 1000,
+        "cache": false
       }
     }
   ],
