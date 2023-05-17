@@ -82,6 +82,103 @@
           }
         }
       }
+    },
+    {
+      "name": "real_query_1",
+      "operation-type": "search",
+      "body": {
+        "query": {
+          "bool": {
+            "must": [
+              {
+                "term": {
+                  "BodyPart": "HEAD"
+                }
+              },
+              {
+                "term": {
+                  "KspacePhaseEnc1": 256
+                }
+              },
+              {
+                "term": {
+                  "KspacePhaseEnc2": 256
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "real_query_2",
+      "operation-type": "search",
+      "body": {
+        "query": {
+          "bool": {
+            "filter": {
+              "script": {
+                "script": "doc['BrainAge'].value - doc['PatientAge'].value >= 5"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "real_query_3",
+      "operation-type": "search",
+      "body": {
+        "query": {
+          "bool": {
+            "must": [
+              {
+                "term": {
+                  "BodyPart": "Head"
+                }
+              },
+              {
+                "bool": {
+                  "should": [
+                    {
+                      "bool": {
+                        "must": [
+                          {
+                            "term": {
+                              "SystemVendor": "Siemens"
+                            }
+                          },
+                          {
+                            "match": {
+                              "ProtocolName": "Siemens3"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "must": [
+                          {
+                            "term": {
+                              "Manufacturer": "GE"
+                            }
+                          },
+                          {
+                            "match": {
+                              "ProtocolName": "GE3"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      }
     }
   ],
   "challenges": [
@@ -134,6 +231,21 @@
         },
         {
           "operation": "range",
+          "warmup-iterations": 50,
+          "iterations": 1000
+        },
+        {
+          "operation": "real_query_1",
+          "warmup-iterations": 50,
+          "iterations": 1000
+        },
+        {
+          "operation": "real_query_2",
+          "warmup-iterations": 50,
+          "iterations": 1000
+        },
+        {
+          "operation": "real_query_3",
           "warmup-iterations": 50,
           "iterations": 1000
         }
