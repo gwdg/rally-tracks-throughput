@@ -20,4 +20,8 @@ UNCOMPRESSED_BYTES=$(stat -c %s data.json)
 echo "Step 2.2: uncompressed-bytes: $UNCOMPRESSED_BYTES"
 sed -i 's/"uncompressed-bytes": [0-9]\+/"uncompressed-bytes": '"$UNCOMPRESSED_BYTES"'/' track.json
 
+# Step 3: Support --test-mode
+echo "Step 3: Support --test-mode"
+head -n 1000 data.json > data-1k.json
+
 echo "Feel free to use!"
