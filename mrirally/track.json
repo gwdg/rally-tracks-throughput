@@ -73,6 +73,11 @@
         },
         {
           "operation": "index"
+        },
+        {
+          "operation": "default",
+          "warmup-iterations": 50,
+          "iterations": 100
         }
       ]
     }
