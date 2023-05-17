@@ -42,9 +42,31 @@
       "body": {
         "query": {
           "match_all": {}
-        },
-        "size": 1000,
-        "cache": false
+        }
+      },
+      "size": 1000,
+      "cache": false
+    },
+    {
+      "name": "term",
+      "operation-type": "search",
+      "body": {
+        "query": {
+          "term": {
+            "BodyPart": "Herz"
+          }
+        }
+      }
+    },
+    {
+      "name": "phrase",
+      "operation-type": "search",
+      "body": {
+        "query": {
+          "match_phrase": {
+            "SystemVendor": "Siemens"
+          }
+        }
       }
     }
   ],
@@ -79,7 +101,22 @@
         {
           "operation": "default",
           "warmup-iterations": 50,
-          "iterations": 100
+          "iterations": 1000
+        },
+        {
+          "operation": "default_1k",
+          "warmup-iterations": 50,
+          "iterations": 1000
+        },
+        {
+          "operation": "term",
+          "warmup-iterations": 50,
+          "iterations": 1000
+        },
+        {
+          "operation": "phrase",
+          "warmup-iterations": 50,
+          "iterations": 1000
         }
       ]
     }
