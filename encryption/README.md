@@ -1,5 +1,4 @@
 # Rally data encryption
-This is the main encryption file.
 
 ## 1. The Index definition
 For each corpus, we definitely need a `index_encrypted.json`
@@ -8,7 +7,7 @@ This is designed analagously to the `index.json` in the rally benchmarks it shou
 {
     "settings": {
         "OPE": {
-            "key": "cJ2x4CY+e9+Egi29p0Db9b4iz3woTnTHaX9OX7BRdWc=",
+            "key": "cJ2x4CY+e9+Egi29p0Db9b4iz3woTnTHaX9OX7BRdWc="
         },
         "AES": {
             "key": "SOME 32 BYTES",
@@ -47,10 +46,10 @@ This is designed analagously to the `index.json` in the rally benchmarks it shou
 Here we will cover how the index gets encrypted. We encrypt each attribute given its beforementioned JSON definition.
 
 **Keys** will get encrypted using AES256 and the Key/IV provided by the `index_encrypted.json`. 
-The output bytes will get decoded as Base64.
+The output bytes will get decoded as Hex using `binascii.hexlify`.
 
 **KeyType** `str` will get encrypted using AES256 and the Key/IV provided by the `index_encrypted.json`.
-The output bytes will get decoded as Base64.
+The output bytes will get decoded as Hex using `binascii.hexlify`.
 
 **KeyType** `int` will be encrypted using OPE and the Key provided by the `index_encrypted.json`.
 The input range will be `(min_range, max_range)`.
