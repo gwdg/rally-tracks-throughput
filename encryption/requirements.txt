@@ -1,0 +1,6 @@
+# for encryption
+pycryptodome
+pyope
+
+# for generation
+numpy
