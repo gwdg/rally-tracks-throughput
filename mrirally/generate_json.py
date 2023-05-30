@@ -287,7 +287,7 @@ def generate_document():
 	# "BrainAge": "Integer()",
 	# of couse, this would normally not be in the unprocessed data, but we need it for the query
 	# it is the PatientAge + a normally distributed random number with mean 0 and std 5
-	doc["BrainAge"] = doc["PatientAge"] + round(random.normalvariate(0, 5))
+	doc["BrainAge"] = min(1, doc["PatientAge"] + round(random.normalvariate(0, 5)))
 
 	return json.dumps(doc)
 
