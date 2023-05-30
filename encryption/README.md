@@ -36,6 +36,10 @@ This is designed analagously to the `index.json` in the rally benchmarks it shou
         "some_date": {
             "type": "date",
             "format": "YYYY-mm-dd"
+        },
+        "array_allowed": {
+            "type": "str",
+            "multi": true
         }
     }
 }
