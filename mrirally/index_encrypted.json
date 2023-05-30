@@ -254,8 +254,7 @@
       "type": "str"
     },
     "PatientBirthday": {
-      "type": "date",
-      "format": "YYYY-mm-dd"
+      "type": "date"
     },
     "PatientWeight": {
       "type": "float",
@@ -272,8 +271,7 @@
       "max_range": 100
     },
     "StudyDate": {
-      "type": "date",
-      "format": "YYYY-mm-dd"
+      "type": "date"
     },
     "Lamor_frequency": {
       "type": "float",

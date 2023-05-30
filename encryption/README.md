@@ -34,8 +34,7 @@ This is designed analagously to the `index.json` in the rally benchmarks it shou
             "step": 0.02
         },
         "some_date": {
-            "type": "date",
-            "format": "YYYY-mm-dd"
+            "type": "date"
         },
         "array_allowed": {
             "type": "str",
@@ -59,8 +58,7 @@ The output bytes will get decoded as Hex using `binascii.hexlify`.
 The input range will be `(min_range, max_range)`.
 The output range is fixed to `(0, 2^32-1)`.
 
-**KeyType** `date` will simply be mapped by mapping `YYYY-mm-dd` to `YYYYmmdd` as a number. This will then get encrypted as an `int` using the input range `(0, 30000000)`.
-In this case, we chose to use a more readable, easy-to-understand algorithm over the canonical unix-timpstamp alike solution of counting the days starting at any specific date.
+**KeyType** `date` will simply be mapped by mapping `YYYY-mm-dd` to `YYYYmmdd` as a number. This will then get encrypted as an `int` using the input range `(0, 30000000)`. For now, other formats than "YYYY-mm-dd" are not supported.
 
 **KeyType** `float` is more difficult.
 
@@ -70,7 +68,7 @@ We know that `start + n * step = end`. Thus we require that `n = (end-start)/ste
 Now, given our input float `x`, we can map it on the interval `(start, end)` using the formula
 `x = start + m * step`, i.e. `m = (x-start)/step`. This `m` can then be used for integer OPE on the input interval `(min_range, max_range)`.
 
-The `step` can be seen as a descriptor on how granular the data has to be saved. If `x` does not fit on the grid, we map it to the nearest value. This is obviously a loss of precision; but one has to choose the trade off between number size and precision themselves. Therefore we assume that this trade off is made explicitly.
+The `step` can be seen as a descriptor on how granular the data has to be saved. If `x` does not fit on the grid, we truncate it to the value below. This is obviously a loss of precision; but one has to choose the trade off between number size and precision themselves. Therefore we assume that this trade off is made explicitly.
 
 On first sight, this algorithm may seem unncessary complex. After speaking with some colleagues, the canonical solution seems to be along the lines of how the scientific notation works: Define an `e` so that `f_e(x) = int(x * 10^e)`.
 But this solution is way inferior. Especially while working with SI units mapping over each small 1e-6 increment results in way too large numbers. Especially, if we also know that for example we only have the last digit ending with `0` or `5`. You get the idea.
