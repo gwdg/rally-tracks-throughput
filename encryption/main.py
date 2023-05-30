@@ -17,6 +17,13 @@ class EncryptionSettings:
     aes_iv: bytes
 
 
+def file_len(filename):
+    i = 0
+    with open(filename, 'r') as fp:
+        for _ in fp:
+            i+=1
+    return i
+
 # Validation functions
 def valid_file_or_die(path):
     if not os.path.isfile(path):
@@ -114,15 +121,21 @@ def main(encrypted_file, corpus_file):
     # The corpus file is formatted as one JSON object per line.
     # It is not wrapped into a big JSON array
     # So we can easily stream over it
+    i = 0
+    n = file_len(corpus_file)
     with open(corpus_file, 'r') as input_file:
         with open(output_path, 'w') as output_file:
             for line in input_file:
                 if not line.strip():
                     continue
 
+                # Show that something happens
+                if i%100 == 0:
+                    print(f"Line {i}/{n}")
+                i+=1
+
                 # The actual work
                 obj = json.loads(line)
-                print(line)
                 encrypted_obj = encrypt(obj)
                 output_file.write(json.dumps(encrypted_obj) + "\n")
 
