@@ -4,7 +4,8 @@
 
 # Step 0: Remove old files
 echo "Step 0: Remove old files"
-rm -rf ./data.json{,.offset}
+rm -f ./data.json{,.offset}
+rm -f data-1k.json
 
 # Step 1: Generate new data
 echo "Step 1: Generate new data"

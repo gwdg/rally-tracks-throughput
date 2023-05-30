@@ -230,7 +230,7 @@ def generate_document():
 	doc["ImageMatrixX"] = random.choice([doc["KspaceReadout"], doc["KspaceReadout"]//2, doc["KspacePhaseEnc1"], doc["KspaceX"]])
 
 	# "BaseResolution": "Integer()", ImageFOVX / ImageMatrixX
-	doc["BaseResolution"] = round(doc["ImageFOVX"] / doc["ImageMatrixX"], ROUND_TO)
+	doc["BaseResolution"] = int(doc["ImageFOVX"] / doc["ImageMatrixX"])
 
 	# "ImageMatrixY" : "Integer()", -> Enc2
 	doc["ImageMatrixY"] = doc["KspacePhaseEnc2"]
@@ -287,7 +287,7 @@ def generate_document():
 	# "BrainAge": "Integer()",
 	# of couse, this would normally not be in the unprocessed data, but we need it for the query
 	# it is the PatientAge + a normally distributed random number with mean 0 and std 5
-	doc["BrainAge"] = min(1, doc["PatientAge"] + round(random.normalvariate(0, 5)))
+	doc["BrainAge"] = max(1, doc["PatientAge"] + round(random.normalvariate(0, 5)))
 
 	return json.dumps(doc)
 

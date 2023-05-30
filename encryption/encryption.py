@@ -28,7 +28,7 @@ class EncryptionSettings:
 def _encrypt_aes(plaintext, key, iv):
     cipher = AES.new(key, AES.MODE_CBC, iv)
     ciphertext = cipher.encrypt(pad(plaintext.encode(), AES.block_size))
-    return binascii.hexlify(ciphertext)
+    return binascii.hexlify(ciphertext).decode()
 
 def _decrypt_aes(ciphertext, key, iv):
     cipher = AES.new(key, AES.MODE_CBC, iv)
@@ -62,8 +62,10 @@ def encrypt_float(settings, attrs, plaintext):
     ope_key = settings.ope_key
 
     converted_to_int = map_float_to_int(min_range, max_range, step, plaintext)
+    # (The min_range_converted would always be 0)
+    max_range_converted = map_float_to_int(min_range, max_range, step, max_range)
 
-    return _encrypt_ope(converted_to_int, ope_key, min_range, max_range)
+    return _encrypt_ope(converted_to_int, ope_key, 0, max_range_converted)
 
 def encrypt_date(settings, plaintext):
     ope_key = settings.ope_key
@@ -149,7 +151,6 @@ def get_encryption_settings_or_die(metadata):
 
 # The main program functions
 def encrypt_dict_based_on_metadata(settings, metadata, obj):
-    print(obj)
     res = {}
     # Now we want to encrypt each attribute according to the format defined in the metadata section
     # See the README for more information.
@@ -158,25 +159,39 @@ def encrypt_dict_based_on_metadata(settings, metadata, obj):
         key_attrs = metadata["attributes"][key]
         key_type = key_attrs["type"]
         val = obj[key]
-        match key_type:
-            case "str":
-                val = encrypt_str(settings, val)
-            case "int":
-                val = encrypt_int(settings, key_attrs, val)
-            case "float":
-                val = encrypt_float(settings, key_attrs, val)
-            case "date":
-                val = encrypt_date(settings, key_attrs, val)
-            case _:
-                print(f"Unknown keytype \"{key_type}\" for key \"{key}\"!", file=sys.stderr)
-                sys.exit(1)
+
+        # TODO refactor me.
+        if key_attrs.get("multi") != True:
+            match key_type:
+                case "str":
+                    val = encrypt_str(settings, val)
+                case "int":
+                    val = encrypt_int(settings, key_attrs, val)
+                case "float":
+                    val = encrypt_float(settings, key_attrs, val)
+                case "date":
+                    val = encrypt_date(settings, val)
+                case _:
+                    print(f"Unknown keytype \"{key_type}\" for key \"{key}\"!", file=sys.stderr)
+                    sys.exit(1)
+        else:
+            match key_type:
+                case "str":
+                    val = [encrypt_str(settings, x) for x in val]
+                case "int":
+                    val = [encrypt_int(settings, key_attrs, x) for x in val]
+                case "float":
+                    val = [encrypt_float(settings, key_attrs, x) for x in val]
+                case "date":
+                    val = [encrypt_date(settings, x) for x in val]
+                case _:
+                    print(f"Unknown keytype \"{key_type}\" for key \"{key}\"!", file=sys.stderr)
+                    sys.exit(1)
 
         # Key encryption
         if settings.encrypt_keys:
             key = encrypt_key(settings, key)
-            ...
         res[key] = val
-    sys.exit(0)
     return res
     ...
 
@@ -190,7 +205,6 @@ def main(encrypted_file, corpus_file):
         metadata = json.load(fp)
     settings = get_encryption_settings_or_die(metadata)
     encrypt = lambda obj: encrypt_dict_based_on_metadata(settings, metadata, obj)
-    print(settings)
 
     # Encrypted corpus Output path
     # For now, lets just put it in the current dir
@@ -207,6 +221,7 @@ def main(encrypted_file, corpus_file):
 
                 # The actual work
                 obj = json.loads(line)
+                print(line)
                 encrypted_obj = encrypt(obj)
                 output_file.write(json.dumps(encrypted_obj) + "\n")
 
