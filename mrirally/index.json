@@ -170,7 +170,7 @@
         "format": "yyyy-MM-dd"
       },
       "PatientWeight": {
-        "type": "date"
+        "type": "float"
       },
       "PatientSex": {
         "type": "text"
