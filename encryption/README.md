@@ -77,7 +77,52 @@ But this solution is way inferior. Especially while working with SI units mappin
 ## 3. Steps in applying this decryption to the rally benchmarks
 
 1. Define a `index_encrypted.json` for the benchmark
-2. Encrypt the corpus given the encryption methods defined in the `index_encrypted.json`
+2. Encrypt the corpus given the encryption methods defined in the `index_encrypted.json`. This is done via the `main.py` script.
 3. Change the size of the resulting corpus file in the `track.json`; feel free to encrypt it afterwards.
-3. Change the attribute names in the `index.json` defining the elasticsearch index structure
-4. Change all queries in the `operations` and `challenges` of the track to the new key and value names
+3. Change the attribute names in the `index.json` defining the elasticsearch index structure. See `4.` on how to do it.
+4. Change all queries in the `operations` and `challenges` of the track to the new key and value names. See `4.` on how to do it.
+
+## 4. How to encrypt any kind of data
+
+It would be overkill to create extra scripts to encrypt the operations or index, as this is such a small amount of data that it can be done within a few minutes of manual work.
+
+Let me explain how to do it.
+
+Lets say you want to encrypt the following query
+```
+"query": {
+  "bool": {
+    "must": [
+      {
+        "term": {
+          "foo": "bar"
+        }
+      },
+      {
+        "range": {
+          "baz": {
+            "gte": 42,
+            "lt": 1337
+          }
+        }
+      }
+    ]
+  }
+}
+```
+
+Then, you would create the following JSON file (wlog `query.json` here)
+```
+{"foo": "bar"}
+{"baz": 42}
+{"baz": 1337}
+```
+Now you can encrypt it using `main.py` and the same `index_encrypted.json` used for the corpus data file. Afterwards, it will look along the lines of
+```
+{"a06afa2d7b35": "72482bacffe"}
+{"042b0e2c3af1": 11499}
+{"042b0e2c3af1": 438l7}
+```
+Since the line ordering doesnt change, one can easily deduce in which line corresponds to which unencrypted key value pair.
+
+This way, one can manually patch the files mentioned.
