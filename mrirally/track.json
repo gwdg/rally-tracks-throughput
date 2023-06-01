@@ -180,6 +180,124 @@
           }
         }
       }
+    },
+    {
+      "name": "term_encrypted",
+      "operation-type": "search",
+      "body": {
+        "query": {
+          "term": {
+            "b4da414e32193ee295394be6219e4d30": "298c1336ba36eb8da0c1c430f00865e7"
+          }
+        }
+      }
+    },
+    {
+      "name": "phrase_encrypted",
+      "operation-type": "search",
+      "body": {
+        "query": {
+          "match_phrase": {
+            "06afa2d7b35183672a6c93bbaff11356": "771941e14252ba396f353b875533d14c"
+          }
+        }
+      }
+    },
+    {
+      "name": "range_encrypted",
+      "operation-type": "search",
+      "body": {
+        "query": {
+          "range": {
+            "042b0e2c3af11ba16e11eb8fd5f5fcda": {
+              "gte": 1149927854,
+              "lt": 1342197701
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "real_query_1_encrypted",
+      "operation-type": "search",
+      "body": {
+        "query": {
+          "bool": {
+            "must": [
+              {
+                "term": {
+                  "b4da414e32193ee295394be6219e4d30": "298c1336ba36eb8da0c1c430f00865e7"
+                }
+              },
+              {
+                "term": {
+                 "84084cc05b8ac4cf5d07aa71cbb78adf": 546723516
+                }
+              },
+              {
+                "term": {
+                 "23368ee5999d172ce38626232aa6b937": 546723516
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "real_query_3_encrypted",
+      "operation-type": "search",
+      "body": {
+        "query": {
+          "bool": {
+            "must": [
+              {
+                "term": {
+                  "b4da414e32193ee295394be6219e4d30": "298c1336ba36eb8da0c1c430f00865e7"
+                }
+              },
+              {
+                "bool": {
+                  "should": [
+                    {
+                      "bool": {
+                        "must": [
+                          {
+                            "term": {
+                              "06afa2d7b35183672a6c93bbaff11356": "771941e14252ba396f353b875533d14c"
+                            }
+                          },
+                          {
+                            "match": {
+                              "656ba589d1435e9fdba5e88364eb9bbc": "0a7c9a74c61635d0928e6f339e8b8718"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "must": [
+                          {
+                            "term": {
+                              "06afa2d7b35183672a6c93bbaff11356": "923ca158fe2e2b5ede29a03620208b68"
+                            }
+                          },
+                          {
+                            "match": {
+                              "656ba589d1435e9fdba5e88364eb9bbc": "63341a287f5cd401e7ec857f6b7d44c4"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      }
     }
   ],
   "challenges": [
