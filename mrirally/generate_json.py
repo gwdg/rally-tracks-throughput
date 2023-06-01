@@ -244,8 +244,8 @@ def generate_document():
 	vals_in_SI = [x/1000 for x in vals_in_mm]
 	doc["SliceThickness"] = random.choice([*[x*doc["KspacePhaseEnc2"] for x in vals_in_SI], *vals_in_SI])
 
-	# "BodyPart" : "Keyword()", -> Diskret Herz, Knie, Hirn
-	doc["BodyPart"] = random.choice(["Herz", "Knie", "Hirn"])
+	# "BodyPart" : "Keyword()", -> Diskret Herz, Knie, Kopf
+	doc["BodyPart"] = random.choice(["Heart", "Knee", "Head"])
 
 	# "PatientID": "Keyword()",
 	# some long id?

@@ -14,7 +14,7 @@
         {
           "source-file": "data.json",
           "document-count": 1000000,
-          "uncompressed-bytes": 1607850532
+          "uncompressed-bytes": 1603032553
         }
       ]
     }
@@ -54,7 +54,7 @@
       "body": {
         "query": {
           "term": {
-            "BodyPart": "Herz"
+            "BodyPart": "Head"
           }
         }
       }
@@ -77,8 +77,8 @@
         "query": {
           "range": {
             "PatientAge": {
-              "gte": 60,
-              "lt": 70
+              "gte": 50,
+              "lt": 60
             }
           }
         }
@@ -93,7 +93,7 @@
             "must": [
               {
                 "term": {
-                  "BodyPart": "HEAD"
+                  "BodyPart": "Head"
                 }
               },
               {
