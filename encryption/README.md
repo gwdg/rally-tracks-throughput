@@ -1,7 +1,7 @@
 # Rally data encryption
 
 ## 1. The Index definition
-For each corpus, we definitely need a `index_encrypted.json`
+For each corpus, we need a `index_encryption_metadata.json`
 This is designed analagously to the `index.json` in the rally benchmarks it should have the following format:
 ```
 {
@@ -48,13 +48,13 @@ This is designed analagously to the `index.json` in the rally benchmarks it shou
 
 Here we will cover how the index gets encrypted. We encrypt each attribute given its beforementioned JSON definition.
 
-**Keys** will get encrypted using AES256 and the Key/IV provided by the `index_encrypted.json`. 
+**Keys** will get encrypted using AES256 and the Key/IV provided by the `index_encryption_metadata.json`. 
 The output bytes will get decoded as Hex using `binascii.hexlify`.
 
-**KeyType** `str` will get encrypted using AES256 and the Key/IV provided by the `index_encrypted.json`.
+**KeyType** `str` will get encrypted using AES256 and the Key/IV provided by the `index_encryption_metadata.json`.
 The output bytes will get decoded as Hex using `binascii.hexlify`.
 
-**KeyType** `int` will be encrypted using OPE and the Key provided by the `index_encrypted.json`.
+**KeyType** `int` will be encrypted using OPE and the Key provided by the `index_encryption_metadata.json`.
 The input range will be `(min_range, max_range)`.
 The output range is fixed to `(0, 2^32-1)`.
 
@@ -76,10 +76,10 @@ But this solution is way inferior. Especially while working with SI units mappin
 
 ## 3. Steps in applying this decryption to the rally benchmarks
 
-1. Define a `index_encrypted.json` for the benchmark
-2. Encrypt the corpus given the encryption methods defined in the `index_encrypted.json`. This is done via the `main.py` script.
+1. Define a `index_encryption_metadata.json` for the benchmark
+2. Encrypt the corpus given the encryption methods defined in the `index_encryption_metadata.json`. This is done via the `encrypt_corpus.py` script.
 3. Change the size of the resulting corpus file in the `track.json`; feel free to encrypt it afterwards.
-3. Change the attribute names in the `index.json` defining the elasticsearch index structure. See `4.` on how to do it.
+3. Change the attribute names in the `index.json` defining the elasticsearch index structure. This is done via the `encrypt_index.py` script.
 4. Change all queries in the `operations` and `challenges` of the track to the new key and value names. See `4.` on how to do it.
 
 ## 4. How to encrypt any kind of data
@@ -117,7 +117,7 @@ Then, you would create the following JSON file (wlog `query.json` here)
 {"baz": 42}
 {"baz": 1337}
 ```
-Now you can encrypt it using `main.py` and the same `index_encrypted.json` used for the corpus data file. Afterwards, it will look along the lines of
+Now you can encrypt it using `encrypt_corpus.py` and the same `index_encryption_metadata.json` used for the corpus data file. Afterwards, it will look along the lines of
 ```
 {"a06afa2d7b35": "72482bacffe"}
 {"042b0e2c3af1": 11499}
