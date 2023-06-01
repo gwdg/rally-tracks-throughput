@@ -130,8 +130,7 @@ def main(encrypted_file, corpus_file):
                     continue
 
                 # Show that something happens
-                if i%100 == 0:
-                    print(f"Line {i}/{n}")
+                print(f"Line {i}/{n}")
                 i+=1
 
                 # The actual work

@@ -1,6 +1,13 @@
 import argparse
 import json
 
+def file_len(filename):
+    i = 0
+    with open(filename, 'r') as fp:
+        for _ in fp:
+            i+=1
+    return i
+
 def update_global_acc(accumulator, k, v):
     if not (isinstance(v, int) or isinstance(v, float)):
         return
@@ -17,15 +24,16 @@ def update_global_acc(accumulator, k, v):
 def main(corpus_file):
     accumulator = {}
     i = 0
+    n = file_len(corpus_file)
     with open(corpus_file, 'r') as fp:
         for line in fp:
             if line.strip == "":
                 continue
             if i % 100 == 0:
-                print(f"Line {i}")
+                print(f"Line {i}/{n}")
             i+=1
             obj = json.loads(line)
-            for k,v in obj.enumerate():
+            for k,v in obj.items():
                 update_global_acc(accumulator,k,v)
     with open("minmax.json", 'w') as fp:
         fp.write(json.dumps(accumulator))
