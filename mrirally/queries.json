@@ -1,0 +1,9 @@
+{"BodyPart": "Head"}
+{"SystemVendor": "Siemens"}
+{"PatientAge": 50 }
+{"PatientAge": 60 }
+{"KspacePhaseEnc1": 256}
+{"KspacePhaseEnc2": 256}
+{"ProtocolName": "Siemens3"}
+{"SystemVendor": "GE"}
+{"ProtocolName": "GE3"}

@@ -14,7 +14,7 @@
         {
           "source-file": "data.json",
           "document-count": 1000000,
-          "uncompressed-bytes": 1603032553
+          "uncompressed-bytes": 1603275026
         }
       ]
     }
@@ -162,7 +162,7 @@
                         "must": [
                           {
                             "term": {
-                              "Manufacturer": "GE"
+                              "SystemVendor": "GE"
                             }
                           },
                           {
