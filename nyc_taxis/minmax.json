@@ -1,1 +1,38 @@
-{"total_amount": {"min": -499.0, "max": 3950611.6}, "improvement_surcharge": {"min": -0.3, "max": 137.63}, "tolls_amount": {"min": -99.0, "max": 1901.4}, "passenger_count": {"min": 0, "max": 9}, "fare_amount": {"min": -499.0, "max": 825998.61}, "extra": {"min": -79.0, "max": 999.99}, "trip_distance": {"min": -40840124.4, "max": 198623013.6}, "tip_amount": {"min": -440.0, "max": 3950588.8}, "mta_tax": {"min": -49.5, "max": 91.0}}
+{
+  "total_amount": -499,
+  "improvement_surcharge": -0.3,
+  "pickup_location": [
+    -178.70570373535156,
+    -78.1946792602539
+  ],
+  "tolls_amount": -99,
+  "dropoff_location": [
+    -179.28680419921875,
+    -78.1946792602539
+  ],
+  "passenger_count": 0,
+  "fare_amount": -499,
+  "extra": -79,
+  "trip_distance": -40840124.4,
+  "tip_amount": -440,
+  "mta_tax": -49.5
+}
+{
+  "total_amount": 3950611.6,
+  "improvement_surcharge": 137.63,
+  "pickup_location": [
+    172.60000610351562,
+    84.49339294433594
+  ],
+  "tolls_amount": 1901.4,
+  "dropoff_location": [
+    172.60000610351562,
+    82.49800872802734
+  ],
+  "passenger_count": 9,
+  "fare_amount": 825998.61,
+  "extra": 999.99,
+  "trip_distance": 198623013.6,
+  "tip_amount": 3950588.8,
+  "mta_tax": 91
+}
