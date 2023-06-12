@@ -28,9 +28,10 @@
     },
     "location": {
       "type": "float",
-      "min_range": -1.0,
-      "max_range": -1.0,
-      "step": -1.0
+      "min_range": -180.0,
+      "max_range": 180.0,
+      "step": 0.0001,
+      "multi": true
     },
     "cc2": {
       "type": "str"
@@ -67,8 +68,8 @@
     },
     "population": {
       "type": "int",
-      "min_range": -1,
-      "max_range": -1
+      "min_range": 0,
+      "max_range": 7000000000
     }
   }
 }

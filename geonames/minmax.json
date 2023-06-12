@@ -1,1 +1,2 @@
-{"geonameid": {"min": 3, "max": 11524147}, "population": {"min": 0, "max": 6814400000}, "elevation": {"min": -10911, "max": 8848}}
+{"geonameid": 3, "population": 0, "location": [-179.9836, -90.0], "elevation": -10911}
+{"geonameid": 11524147, "population": 6814400000, "location": [180.0, 90.0], "elevation": 8848}
