@@ -8,28 +8,29 @@ def file_len(filename):
             i+=1
     return i
 
-def _min(old, new):
+def _cmp(fn, old, new):
     if not isinstance(new, list):
-        return min(old, new)
+        return fn(old, new)
     if len(old) != len(new):
         raise Exception("Len unequal! This should never happen")
 
-    min_arr = []
+    res = []
     for i in range(len(new)):
-        min_arr.append(min(old[i], new[i]))
-    return min_arr
+        res.append(fn(old[i], new[i]))
+    return res
 
-def update_acc(acc, k, v):
+def update_acc(fn, acc_min, k, v):
     if isinstance(v, str):
-        return acc
-    if acc.get(k) is None:
-        acc[k] = v
-        return acc
-    acc[k] = _min(acc[k], v)
-    return acc
+        return acc_min
+    if acc_min.get(k) is None:
+        acc_min[k] = v
+        return acc_min
+    acc_min[k] = _cmp(fn, acc_min[k], v)
+    return acc_min
 
 def main(corpus_file):
-    acc = {}
+    acc_min = {}
+    acc_max = {}
     i = 0
     n = file_len(corpus_file)
     with open(corpus_file, 'r') as fp:
@@ -41,9 +42,11 @@ def main(corpus_file):
             i+=1
             obj = json.loads(line)
             for k,v in obj.items():
-                acc = update_acc(acc,k,v)
+                acc_min = update_acc(min, acc_min, k, v)
+                acc_max = update_acc(max, acc_max, k, v)
     with open("minmax.json", 'w') as fp:
-        fp.write(json.dumps(acc))
+        fp.write(json.dumps(acc_min))
+        fp.write(json.dumps(acc_max))
 
 
 
