@@ -81,7 +81,7 @@ But this solution is way inferior. Especially while working with SI units mappin
 
 ## 3. Steps in applying this decryption to the rally benchmarks
 
-1. Define a `index_encryption_metadata.json` for the benchmark
+1. Define a `index_encryption_metadata.json` for the benchmark. Use `find_min_max.py` to figure out what `min_range` and `max_range` attributes should suffice given a specific corpus.
 2. Encrypt the corpus given the encryption methods defined in the `index_encryption_metadata.json`. This is done via the `encrypt_corpus.py` script.
 3. Change the size of the resulting corpus file in the `track.json`; feel free to encrypt it afterwards.
 3. Change the attribute names in the `index.json` defining the elasticsearch index structure. This is done via the `encrypt_index.py` script.
