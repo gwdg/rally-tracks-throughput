@@ -59,7 +59,7 @@ The output bytes will get decoded as Hex using `binascii.hexlify`.
 
 **KeyType** `int` will be encrypted using OPE and the Key provided by the `index_encryption_metadata.json`.
 The input range will be `(min_range, max_range)`.
-The output range is fixed to `(0, 2^32-1)`.
+The output range is fixed to `(0, 2^64-1)`.
 
 **KeyType** `date` will simply be mapped by mapping `YYYY-mm-dd` to `YYYYmmdd` as a number. This will then get encrypted as an `int` using the input range `(0, 30000000)`. For now, other formats than "YYYY-mm-dd" are not supported.
 

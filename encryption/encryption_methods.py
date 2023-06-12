@@ -14,6 +14,9 @@ DATE_MAX_RANGE = 30000000 # i.e. above 2999-12-31
 TIME_MIN_RANGE = 0
 TIME_MAX_RANGE = 30000000000000
 
+MIN_OUT_RANGE = 0
+MAX_OUT_RANGE = 2**64-1
+
 
 def _encrypt_aes(plaintext, key, iv):
     cipher = AES.new(key, AES.MODE_CBC, iv)
@@ -26,10 +29,10 @@ def _decrypt_aes(ciphertext, key, iv):
     return unpad(decrypted, AES.block_size).decode()
 
 def _encrypt_ope(n, key, min_range, max_range):
-    return OPE(key, in_range=ValueRange(min_range, max_range)).encrypt(n)
+    return OPE(key, in_range=ValueRange(min_range, max_range), out_range=ValueRange(MIN_OUT_RANGE, MAX_OUT_RANGE)).encrypt(n)
 
 def _decrypt_ope(n, key, min_range, max_range):
-    return OPE(key, in_range=ValueRange(min_range, max_range)).decrypt(n)
+    return OPE(key, in_range=ValueRange(min_range, max_range), out_range=ValueRange(MIN_OUT_RANGE, MAX_OUT_RANGE)).decrypt(n)
 
 def encrypt_key(settings, plaintext):
     return encrypt_str(settings, plaintext)
@@ -51,10 +54,10 @@ def encrypt_float(settings, attrs, plaintext):
     ope_key = settings.ope_key
 
     converted_to_int = map_float_to_int(min_range, max_range, step, plaintext)
-    # (The min_range_converted would always be 0)
+    min_range_converted = map_float_to_int(min_range, max_range, step, min_range)
     max_range_converted = map_float_to_int(min_range, max_range, step, max_range)
 
-    return _encrypt_ope(converted_to_int, ope_key, 0, max_range_converted)
+    return _encrypt_ope(converted_to_int, ope_key, min_range_converted, max_range_converted)
 
 def encrypt_date(settings, plaintext):
     ope_key = settings.ope_key
