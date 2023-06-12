@@ -8,21 +8,28 @@ def file_len(filename):
             i+=1
     return i
 
-def update_global_acc(accumulator, k, v):
-    if not (isinstance(v, int) or isinstance(v, float)):
-        return
+def _min(old, new):
+    if not isinstance(new, list):
+        return min(old, new)
+    if len(old) != len(new):
+        raise Exception("Len unequal! This should never happen")
 
-    # If this is the first occurance, it is obviously the minimum and maximum value known
-    if accumulator.get(k) is None:
-        accumulator[k] = {"min": v, "max": v}
-        return
+    min_arr = []
+    for i in range(len(new)):
+        min_arr.append(min(old[i], new[i]))
+    return min_arr
 
-    # If there already was a value, we can how compare against it
-    accumulator[k]["min"] = min(accumulator[k]["min"], v)
-    accumulator[k]["max"] = max(accumulator[k]["max"], v)
+def update_acc(acc, k, v):
+    if isinstance(v, str):
+        return acc
+    if acc.get(k) is None:
+        acc[k] = v
+        return acc
+    acc[k] = _min(acc[k], v)
+    return acc
 
 def main(corpus_file):
-    accumulator = {}
+    acc = {}
     i = 0
     n = file_len(corpus_file)
     with open(corpus_file, 'r') as fp:
@@ -34,9 +41,9 @@ def main(corpus_file):
             i+=1
             obj = json.loads(line)
             for k,v in obj.items():
-                update_global_acc(accumulator,k,v)
+                acc = update_acc(acc,k,v)
     with open("minmax.json", 'w') as fp:
-        fp.write(json.dumps(accumulator))
+        fp.write(json.dumps(acc))
 
 
 
