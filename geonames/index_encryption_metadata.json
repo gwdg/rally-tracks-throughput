@@ -1,0 +1,74 @@
+{
+  "settings": {
+    "OPE": {
+      "key": "cJ2x4CY+e9+Egi29p0Db9b4iz3woTnTHaX9OX7BRdWc="
+    },
+    "AES": {
+      "key": "760e5814b47bab90674c7e9b938ace21f0877a4278e40d2c15eba6a33b25cd66",
+      "iv": "3a5d57cecd6066e10674c546aba347ad"
+    },
+    "ENCRYPT_KEYS": true
+  },
+  "attributes": {
+    "elevation": {
+      "type": "int",
+      "min_range": -11000,
+      "max_range": 9000
+    },
+    "name": {
+      "type": "str"
+    },
+    "geonameid": {
+      "type": "int",
+      "min_range": 1,
+      "max_range": 12000000
+    },
+    "feature_class": {
+      "type": "str"
+    },
+    "location": {
+      "type": "float",
+      "min_range": -1.0,
+      "max_range": -1.0,
+      "step": -1.0
+    },
+    "cc2": {
+      "type": "str"
+    },
+    "timezone": {
+      "type": "str"
+    },
+    "dem": {
+      "type": "str"
+    },
+    "country_code": {
+      "type": "str"
+    },
+    "admin1_code": {
+      "type": "str"
+    },
+    "admin2_code": {
+      "type": "str"
+    },
+    "admin3_code": {
+      "type": "str"
+    },
+    "admin4_code": {
+      "type": "str"
+    },
+    "feature_code": {
+      "type": "str"
+    },
+    "alternatenames": {
+      "type": "str"
+    },
+    "asciiname": {
+      "type": "str"
+    },
+    "population": {
+      "type": "int",
+      "min_range": -1,
+      "max_range": -1
+    }
+  }
+}
