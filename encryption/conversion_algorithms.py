@@ -35,9 +35,27 @@ def map_date_to_int(date_string):
     date_pattern = re.compile(r'^(\d{4})-(\d{2})-(\d{2})$')
     match = date_pattern.match(date_string)
     if match:
-        year = int(match.group(1))
-        month = int(match.group(2))
-        day = int(match.group(3))
-        return year * 10000 + month * 100 + day
+        year = match.group(1)
+        month = match.group(2)
+        day = match.group(3)
+        # (this is string concat)
+        num = year + month + day
+        return int(num)
     else:
         raise ValueError('Invalid date format')
+
+def map_time_to_int(time_string):
+    time_pattern = re.compile(r'^(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})$')
+    match = time_pattern.match(time_string)
+    if match:
+        year = match.group(1)
+        month = match.group(2)
+        day = match.group(3)
+        hour = match.group(4)
+        minute = match.group(5)
+        second = match.group(6)
+        # (This is string concat)
+        num = year + month + day + hour + minute + second
+        return int(num)
+    else:
+        raise ValueError('Invalid time format')

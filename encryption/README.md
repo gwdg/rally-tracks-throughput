@@ -36,6 +36,9 @@ This is designed analagously to the `index.json` in the rally benchmarks it shou
         "some_date": {
             "type": "date"
         },
+        "some_time": {
+            "type": "time"
+        }
         "array_allowed": {
             "type": "str",
             "multi": true
@@ -59,6 +62,8 @@ The input range will be `(min_range, max_range)`.
 The output range is fixed to `(0, 2^32-1)`.
 
 **KeyType** `date` will simply be mapped by mapping `YYYY-mm-dd` to `YYYYmmdd` as a number. This will then get encrypted as an `int` using the input range `(0, 30000000)`. For now, other formats than "YYYY-mm-dd" are not supported.
+
+**KeyType** `time` works equivalent, but mapping `YYYY-mm-dd hh:mm:ss` to `YYYYmmddhhmmss` and `(0, 30000000000000)` (still fits in u64).
 
 **KeyType** `float` is more difficult.
 

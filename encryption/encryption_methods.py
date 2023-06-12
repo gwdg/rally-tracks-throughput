@@ -4,12 +4,15 @@ from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad, unpad
 from pyope.ope import OPE, ValueRange
 
-from conversion_algorithms import map_float_to_int, map_date_to_int
+from conversion_algorithms import map_float_to_int, map_date_to_int, map_time_to_int
 
 # Since we decode YYYY-mm-dd to YYYYmmdd
 # this can map everything up to year 3000, which should be plenty enough
 DATE_MIN_RANGE = 0 # i.e below 0000-00-01
 DATE_MAX_RANGE = 30000000 # i.e. above 2999-12-31
+# Analagously with YYYY-mm-dd hh:mm:ss
+TIME_MIN_RANGE = 0
+TIME_MAX_RANGE = 30000000000000
 
 
 def _encrypt_aes(plaintext, key, iv):
@@ -59,3 +62,11 @@ def encrypt_date(settings, plaintext):
     converted_to_int = map_date_to_int(plaintext)
 
     return _encrypt_ope(converted_to_int, ope_key, DATE_MIN_RANGE, DATE_MAX_RANGE)
+
+def encrypt_time(settings, plaintext):
+    ope_key = settings.ope_key
+
+    converted_to_int = map_time_to_int(plaintext)
+
+    return _encrypt_ope(converted_to_int, ope_key, TIME_MIN_RANGE, TIME_MAX_RANGE)
+

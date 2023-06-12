@@ -7,7 +7,7 @@ import time
 
 from dataclasses import dataclass
 
-from encryption_methods import encrypt_key, encrypt_str, encrypt_int, encrypt_date, encrypt_float
+from encryption_methods import encrypt_key, encrypt_str, encrypt_int, encrypt_date, encrypt_float, encrypt_time
 
 @dataclass
 class EncryptionSettings:
@@ -80,6 +80,8 @@ def encrypt_dict_based_on_metadata(settings, metadata, obj):
                     val = encrypt_float(settings, key_attrs, val)
                 case "date":
                     val = encrypt_date(settings, val)
+                case "time":
+                    val = encrypt_time(settings, val)
                 case _:
                     print(f"Unknown keytype \"{key_type}\" for key \"{key}\"!", file=sys.stderr)
                     sys.exit(1)
