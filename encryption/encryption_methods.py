@@ -45,7 +45,6 @@ def encrypt_int(settings, attrs, plaintext):
     max_range = attrs["max_range"]
     ope_key = settings.ope_key
     return _encrypt_ope(plaintext, ope_key, min_range, max_range)
-    ...
 
 def encrypt_float(settings, attrs, plaintext):
     min_range = attrs["min_range"]

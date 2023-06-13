@@ -114,7 +114,6 @@ def main(encrypted_file, corpus_file):
     with open(encrypted_file, 'r') as fp:
         metadata = json.load(fp)
     settings = get_encryption_settings_or_die(metadata)
-    encrypt = lambda obj: encrypt_dict_based_on_metadata(settings, metadata, obj)
 
     # Encrypted corpus Output path
     # For now, lets just put it in the current dir
@@ -137,7 +136,7 @@ def main(encrypted_file, corpus_file):
 
                 # The actual work
                 obj = json.loads(line)
-                encrypted_obj = encrypt(obj)
+                encrypted_obj = encrypt_dict_based_on_metadata(settings, metadata, obj)
                 output_file.write(json.dumps(encrypted_obj) + "\n")
 
 if __name__ == "__main__":
