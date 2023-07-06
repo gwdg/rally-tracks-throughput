@@ -292,7 +292,7 @@
     "BrainAge": {
       "type": "int",
       "min_range": 0,
-      "max_range": 120
+      "max_range": 125
     }
   }
 }
