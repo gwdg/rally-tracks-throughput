@@ -117,7 +117,7 @@ def main(encrypted_file, corpus_file):
 
     # Encrypted corpus Output path
     # For now, lets just put it in the current dir
-    output_path = f"./index_{int(time.time())}.json"
+    output_path = corpus_file.replace(".json", "_encrypted.json")
 
     # The corpus file is formatted as one JSON object per line.
     # It is not wrapped into a big JSON array
