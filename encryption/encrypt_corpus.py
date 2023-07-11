@@ -71,33 +71,33 @@ def encrypt_dict_based_on_metadata(settings, metadata, obj):
 
         # TODO refactor me.
         if key_attrs.get("multi") != True:
-            match key_type:
-                case "str":
-                    val = encrypt_str(settings, val)
-                case "int":
-                    val = encrypt_int(settings, key_attrs, val)
-                case "float":
-                    val = encrypt_float(settings, key_attrs, val)
-                case "date":
-                    val = encrypt_date(settings, val)
-                case "time":
-                    val = encrypt_time(settings, val)
-                case _:
-                    print(f"Unknown keytype \"{key_type}\" for key \"{key}\"!", file=sys.stderr)
-                    sys.exit(1)
+            if key_type == "str":
+                val = encrypt_str(settings, val)
+            elif key_type == "int":
+                val = encrypt_int(settings, key_attrs, val)
+            elif key_type == "float":
+                val = encrypt_float(settings, key_attrs, val)
+            elif key_type == "date":
+                val = encrypt_date(settings, val)
+            elif key_type == "time":
+                val = encrypt_time(settings, val)
+            else:
+                print(f"aUnknown keytype \"{key_type}\" for key \"{key}\"!", file=sys.stderr)
+                sys.exit(1)
         else:
-            match key_type:
-                case "str":
-                    val = [encrypt_str(settings, x) for x in val]
-                case "int":
-                    val = [encrypt_int(settings, key_attrs, x) for x in val]
-                case "float":
-                    val = [encrypt_float(settings, key_attrs, x) for x in val]
-                case "date":
-                    val = [encrypt_date(settings, x) for x in val]
-                case _:
-                    print(f"Unknown keytype \"{key_type}\" for key \"{key}\"!", file=sys.stderr)
-                    sys.exit(1)
+            if key_type == "str":
+                val = [encrypt_str(settings, x) for x in val]
+            elif key_type == "int":
+                val = [encrypt_int(settings, key_attrs, x) for x in val]
+            elif key_type == "float":
+                val = [encrypt_float(settings, key_attrs, x) for x in val]
+            elif key_type == "date":
+                val = [encrypt_date(settings, x) for x in val]
+            elif key_type == "time":
+                val = [encrypt_time(settings, x) for x in val]
+            else:
+                print(f"Unknown keytype \"{key_type}\" for key \"{key}\"!", file=sys.stderr)
+                sys.exit(1)
 
         # Key encryption
         if settings.encrypt_keys:
