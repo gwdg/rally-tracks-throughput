@@ -12,7 +12,6 @@
   "corpora": [
     {
       "name": "nyc_taxis",
-      "base-url": "https://rally-tracks.elastic.co/nyc_taxis",
       "documents": [
         {
           "source-file": "documents.json.bz2",

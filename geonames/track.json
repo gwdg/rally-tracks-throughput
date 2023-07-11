@@ -2,7 +2,6 @@
 {
   "version": 2,
   "description": "POIs from Geonames",
-  "data-url": "http://benchmarks.elasticsearch.org.s3.amazonaws.com/corpora/geonames",
   "indices": [
     {
       "name": "geonames",
@@ -12,7 +11,6 @@
   "corpora": [
     {
       "name": "geonames",
-      "base-url": "https://rally-tracks.elastic.co/geonames",
       "documents": [
         {
           "source-file": "documents-2.json.bz2",
